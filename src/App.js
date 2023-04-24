@@ -2,14 +2,14 @@ import logo from "./logo.svg";
 import React, { Suspense } from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
-import { withRouter } from "./utils/withRouter/withRouter";
+import { withRouter } from "./hoc/withRouter";
 import Preloader from "./components/common/Preloader/Preloader";
 
 const DialogsContainer = React.lazy(() =>
@@ -36,11 +36,12 @@ class App extends React.Component {
         <div className="app-content">
           <React.Suspense fallback={<Preloader />}>
             <Routes>
+              <Route path="/" element={<Navigate to="/profile" />} />
               <Route path="/profile/:userId?" element={<ProfileContainer />} />
-              <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/dialogs/*" element={<DialogsContainer />} />
               <Route path="/users" element={<UsersContainer />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="*" element={<div>404</div>} />
             </Routes>
           </React.Suspense>
         </div>
