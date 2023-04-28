@@ -56,7 +56,8 @@ export const authAPI = {
   me() {
     return instance.get(`auth/me`);
   },
-  login(email, password, rememberMe = false, captcha = null) {
+  login(email, password, rememberMe = false, captcha /*captcha = null*/) {
+    debugger;
     return instance.post(`auth/login`, {
       email,
       password,
