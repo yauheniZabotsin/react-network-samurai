@@ -8,7 +8,7 @@ const SET_STATUS = "SET_STATUS";
 const DELETE_POST = "DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 
-let initialState = {
+const initialState = {
   posts: [
     { id: 1, message: "Hi, how are you?", likesCount: 12 },
     { id: 2, message: "It's my first post", likesCount: 11 },

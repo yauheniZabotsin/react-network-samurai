@@ -24,7 +24,6 @@ type InitialState = typeof initialState;
 const usersReducer = (state = initialState, action: any): InitialState => {
   switch (action.type) {
     case FOLLOW:
-      debugger;
       return {
         ...state,
         users: updateObjectInArray(state.users, action.userId, "id", {

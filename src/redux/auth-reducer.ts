@@ -4,7 +4,7 @@ import { authAPI, securityAPI } from "../api/api";
 const SET_USER_DATA = "samurai-network/auth/SET_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "samurai-network/auth/GET_CAPTCHA_URL_SUCCESS";
 
-let initialState = {
+const initialState = {
   userId: null as number | null,
   email: null as string | null,
   login: null as string | null,
