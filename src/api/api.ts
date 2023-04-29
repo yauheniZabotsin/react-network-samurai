@@ -81,8 +81,9 @@ type LoginResponseType = {
 };
 
 export const authAPI = {
-  me() {
-    return instance.get<MeResponseType>(`auth/me`).then((res) => res.data);
+  async me() {
+    const res = await instance.get<MeResponseType>(`auth/me`);
+    return res.data;
   },
   login(
     email: string,
