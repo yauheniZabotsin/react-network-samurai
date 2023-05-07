@@ -1,10 +1,7 @@
 import { stopSubmit } from "redux-form";
-import {
-  ResultCodeForCapcthaEnum,
-  ResultCodesEnum,
-  authAPI,
-  securityAPI,
-} from "../api/api";
+import { ResultCodeForCapcthaEnum, ResultCodesEnum } from "../api/api";
+import { authAPI } from "../api/auth-api";
+import { securityAPI } from "../api/security-api";
 
 const SET_USER_DATA = "samurai-network/auth/SET_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "samurai-network/auth/GET_CAPTCHA_URL_SUCCESS";
@@ -101,8 +98,8 @@ export const getCaptchaUrlSuccess = (
   payload: { captchaUrl },
 });
 export const getCaptchaUrl = () => async (dispatch: any) => {
-  const response = await securityAPI.getCaptchaUrl();
-  const captchaUrl = response.data.url;
+  const data = await securityAPI.getCaptchaUrl();
+  const captchaUrl = data.url;
   dispatch(getCaptchaUrlSuccess(captchaUrl));
 };
 
