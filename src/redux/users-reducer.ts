@@ -60,7 +60,14 @@ const usersReducer = (
   }
 };
 
+type GetStateType = () => AppStateType;
 type ActionsTypes = InferActionsTypes<typeof actions>;
+type ThunkType = ThunkAction<
+  Promise<void>,
+  AppStateType,
+  unknown,
+  ActionsTypes
+>;
 
 export const actions = {
   followSuccess: (userId: number) => ({ type: "FOLLOW", userId } as const),
@@ -86,15 +93,6 @@ export const actions = {
     } as const),
 };
 
-type GetStateType = () => AppStateType;
-type DispatchType = Dispatch<ActionsTypes>;
-type ThunkType = ThunkAction<
-  Promise<void>,
-  AppStateType,
-  unknown,
-  ActionsTypes
->;
-
 export const requestUsers = (page: number, pageSize: number): ThunkType => {
   return async (dispatch) => {
     dispatch(actions.toggleIsFetching(true));
@@ -109,7 +107,7 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => {
 };
 
 const _followUnfollowFlow = async (
-  dispatch: DispatchType,
+  dispatch: Dispatch<ActionsTypes>,
   userId: number,
   apiMethod: any,
   actionCreator: (userId: number) => ActionsTypes
